@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/payment.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="text-center mt-5">Payment</h1>
+        <hr>
+        <!-- Display Reservation Details -->
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3">
+                <h4>Reservation Details</h4>
+                <p><strong>Reservation ID:</strong> <span th:text="${reservation.id}"></span></p>
+                <p><strong>Total Amount:</strong> $<span th:text="${price}"></span></p>
+            </div>
+        </div>
+
+        <!-- Payment Options -->
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3">
+                <h4>Payment Options</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="paymentOption" id="creditCard" value="creditCard">
+                    <label class="form-check-label" for="creditCard">Credit Card</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="paymentOption" id="upi" value="upi">
+                    <label class="form-check-label" for="upi">UPI</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="paymentOption" id="cash" value="cash">
+                    <label class="form-check-label" for="cash">Cash</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Box -->
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3">
+                <h4>Feedback</h4>
+                <textarea class="form-control" rows="5" id="feedback"></textarea>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3">
+                <!-- Replace the existing button with the form -->
+                <form id="paymentForm" action="/reservation-check-out" method="POST">
+                    <input type="hidden" name="resId" th:value="${reservation.id}" />
+                    <!-- Add a hidden input field for the status -->
+                    <input type="hidden" name="status" value="checked out" />
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Pay Now</button>
+                </form>
+                               
+            </div>
+        </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
